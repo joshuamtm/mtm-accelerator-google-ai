@@ -105,7 +105,7 @@
 
     /* App Grid Visual */
     .hero-visual { position:relative; z-index:2; animation:fadeIn 1.2s var(--ease-out-expo) 0.4s both; }
-    .app-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; max-width:320px; margin:0 auto; }
+    .app-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; max-width:320px; margin:0 auto; justify-items:center; }
     .app-tile { background:white; border-radius:16px; padding:20px 16px; text-align:center; box-shadow:0 4px 20px rgba(0,0,0,0.06); border:1px solid var(--border-light); transition:all 0.3s var(--ease-out-expo); position:relative; }
     .app-tile:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.1); }
     .app-tile-icon { font-size:2rem; margin-bottom:6px; }
@@ -317,11 +317,6 @@
             <div class="app-tile-icon">🎥</div>
             <div class="app-tile-name">Vids</div>
           </div>
-          <div class="app-tile">
-            <div class="ai-badge">AI</div>
-            <div class="app-tile-icon">🎥</div>
-            <div class="app-tile-name">Meet</div>
-          </div>
           <div class="app-tile center-tile">
             <div class="app-tile-icon">🔗</div>
             <div class="app-tile-name">Workspace</div>
@@ -369,7 +364,7 @@
       </div>
       <div class="pain-card reveal reveal-delay-3">
         <div class="pain-icon">🧪</div>
-        <div class="pain-text"><strong>AI Studio, Vids & Meet AI</strong>Build custom AI prompts, create video content, and get automated meeting notes — all connected to your Workspace.</div>
+        <div class="pain-text"><strong>AI Studio & Vids</strong>Build and test custom AI prompts with AI Studio. Create polished video content with Vids — Google's AI video creator built right into Workspace.</div>
       </div>
     </div>
   </div>
@@ -412,10 +407,9 @@
         <div class="week-apps">
           <span class="week-app-tag">AI Studio</span>
           <span class="week-app-tag">Vids</span>
-          <span class="week-app-tag">Meet</span>
         </div>
-        <p class="week-desc">Go beyond the basics. Use Google AI Studio to build and test custom prompts. Create video content with Vids. Set up automated meeting notes in Meet. See how the pieces connect into real workflows.</p>
-        <div class="week-deliverable"><strong>You leave with:</strong> <span>A tested custom prompt in AI Studio + an automated meeting workflow</span></div>
+        <p class="week-desc">Go beyond the basics. Use Google AI Studio to build and test custom prompts for your organization's specific needs. Create polished video content with Vids — donor updates, program highlights, training materials. See how the pieces connect into real workflows.</p>
+        <div class="week-deliverable"><strong>You leave with:</strong> <span>A tested custom prompt in AI Studio + a video draft created with Vids</span></div>
       </div>
       <div class="week-card reveal reveal-delay-3">
         <p class="week-num">Week 4 · May 14</p>
