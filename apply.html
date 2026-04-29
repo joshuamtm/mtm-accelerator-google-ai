@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request a Discount — Google AI Toolkit Accelerator | MTM</title>
+  <meta name="description" content="If $225 isn't right for your situation, this short form lets us know. We respond within one business day.">
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --orange: #e8792b;
+      --orange-light: #f5a623;
+      --amber: #d4740e;
+      --navy: #1a2744;
+      --navy-deep: #0f1a2e;
+      --navy-mid: #2a3a5c;
+      --cyan: #1ab1d2;
+      --cream: #fdf6ee;
+      --cream-dark: #f5ead8;
+      --warm-white: #fefcf9;
+      --text-primary: #1a2744;
+      --text-body: #3d4a5c;
+      --text-secondary: #6b7a8d;
+      --text-muted: #94a3b8;
+      --border: #e8ddd0;
+      --border-light: #f0e8dc;
+      --g-green: #34a853;
+      --error: #c0392b;
+
+      --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --font-body: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body); color: var(--text-body); line-height: 1.7;
+      background: var(--warm-white); -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: var(--font-display); color: var(--navy); line-height: 1.2; }
+    a { color: var(--orange); }
+
+    /* Nav (matches index.html) */
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(253,246,238,0.92); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-light); }
+    .nav-inner { max-width: 1140px; margin: 0 auto; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-back { font-size: 0.875rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; }
+    .nav-back:hover { color: var(--orange); }
+
+    /* Page */
+    .page { padding: 64px 0 120px; background: var(--cream); min-height: calc(100vh - 65px); }
+    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+    .header { margin-bottom: 40px; }
+    .section-label { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+    h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+    .lede { font-size: 1.05rem; color: var(--text-body); max-width: 620px; }
+    .lede strong { color: var(--navy); }
+
+    .why-card {
+      background: white; border: 1px solid var(--border); border-radius: 12px;
+      padding: 24px 28px; margin: 32px 0 40px; font-size: 0.98rem;
+      box-shadow: 0 2px 12px rgba(26,39,68,0.04);
+    }
+    .why-card h3 { font-size: 1.1rem; margin-bottom: 10px; font-style: italic; font-weight: 600; }
+    .why-card p { color: var(--text-body); }
+    .why-card p + p { margin-top: 10px; }
+
+    /* Form */
+    form { background: white; border-radius: 16px; padding: 40px 36px; box-shadow: 0 4px 24px rgba(26,39,68,0.06); border: 1px solid var(--border-light); }
+    .field { margin-bottom: 24px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field-row .field { margin-bottom: 0; }
+    .field label { display: block; font-weight: 600; color: var(--navy); margin-bottom: 6px; font-size: 0.95rem; }
+    .field label .required { color: var(--orange); margin-left: 2px; }
+    .field label .opt { color: var(--text-muted); font-weight: 400; font-size: 0.85rem; margin-left: 4px; }
+    .field .helper { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-top: -2px; margin-bottom: 8px; }
+    .field input[type="text"],
+    .field input[type="email"],
+    .field input[type="number"],
+    .field textarea {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--border); border-radius: 8px;
+      font-family: var(--font-body); font-size: 0.98rem; color: var(--text-primary);
+      background: var(--warm-white); transition: all 0.2s;
+    }
+    .field textarea { min-height: 80px; resize: vertical; line-height: 1.5; }
+    .field input:focus, .field textarea:focus { outline: none; border-color: var(--orange); background: white; box-shadow: 0 0 0 3px rgba(232,121,43,0.1); }
+
+    /* Radio groups */
+    .radio-group { display: flex; flex-direction: column; gap: 8px; }
+    .radio-option {
+      display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px;
+      background: var(--warm-white); border: 1px solid var(--border); border-radius: 8px;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .radio-option:hover { border-color: var(--orange); background: white; }
+    .radio-option input[type="radio"] { margin-top: 4px; flex-shrink: 0; accent-color: var(--orange); }
+    .radio-option:has(input:checked) { border-color: var(--orange); background: white; box-shadow: 0 0 0 3px rgba(232,121,43,0.08); }
+    .radio-option .label { font-weight: 600; color: var(--navy); }
+    .radio-option .desc { font-size: 0.88rem; color: var(--text-secondary); margin-top: 2px; line-height: 1.5; }
+    .radio-option .price-tag { font-weight: 700; color: var(--orange); }
+
+    /* Conditional reveal */
+    .conditional { display: none; padding-left: 36px; padding-top: 12px; }
+    .conditional.show { display: block; animation: slideDown 0.25s var(--ease-out-expo); }
+    @keyframes slideDown { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    .conditional input[type="number"] { max-width: 140px; }
+
+    /* Checkbox */
+    .checkbox-field {
+      display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+      background: var(--cream-dark); border-radius: 8px; margin-bottom: 24px;
+    }
+    .checkbox-field input[type="checkbox"] { margin-top: 4px; flex-shrink: 0; accent-color: var(--orange); width: 16px; height: 16px; }
+    .checkbox-field label { font-weight: 500; color: var(--text-body); font-size: 0.92rem; line-height: 1.5; }
+    .checkbox-field label .small { color: var(--text-secondary); font-size: 0.85rem; display: block; margin-top: 2px; }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: white;
+      padding: 14px 32px; border-radius: 8px; font-family: var(--font-body); font-size: 1rem;
+      font-weight: 700; text-decoration: none; transition: all 0.25s var(--ease-out-expo);
+      box-shadow: 0 4px 16px rgba(232,121,43,0.3); border: none; cursor: pointer; width: 100%; justify-content: center;
+    }
+    .btn-primary:hover { background: var(--amber); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(232,121,43,0.4); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: 0 4px 16px rgba(232,121,43,0.2); }
+
+    /* Success state */
+    .success {
+      background: white; border-radius: 16px; padding: 56px 40px; text-align: center;
+      box-shadow: 0 4px 24px rgba(26,39,68,0.06); border: 1px solid var(--border-light);
+    }
+    .success-icon {
+      width: 64px; height: 64px; margin: 0 auto 24px; border-radius: 50%;
+      background: rgba(52,168,83,0.12); display: flex; align-items: center; justify-content: center;
+      color: var(--g-green); font-size: 32px;
+    }
+    .success h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 12px; }
+    .success p { color: var(--text-body); margin-bottom: 16px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .success .btn-primary { width: auto; margin-top: 16px; }
+
+    /* Error message */
+    .error-msg {
+      background: rgba(192,57,43,0.08); border: 1px solid rgba(192,57,43,0.2); color: var(--error);
+      padding: 12px 16px; border-radius: 8px; margin-bottom: 20px; font-size: 0.92rem;
+      display: none;
+    }
+    .error-msg.show { display: block; }
+
+    /* Footer */
+    footer { padding: 32px 0; text-align: center; font-size: 0.85rem; color: var(--text-muted); }
+    footer a { color: var(--text-muted); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.85rem; }
+      form { padding: 28px 22px; }
+      .field-row { grid-template-columns: 1fr; gap: 0; }
+      .field-row .field { margin-bottom: 24px; }
+      .why-card { padding: 20px 22px; }
+    }
+
+    /* Honeypot — hidden from real users */
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">Meet the <span>Moment</span></a>
+    <a href="/" class="nav-back">← Back to accelerator</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="container">
+
+    <div id="form-view">
+
+      <header class="header">
+        <p class="section-label">Discount Application</p>
+        <h1>Request a discount</h1>
+        <p class="lede">
+          Our base price is <strong>$225</strong>. If that isn't right for your situation, this short form lets us know. We respond within <strong>one business day</strong>.
+        </p>
+      </header>
+
+      <div class="why-card">
+        <h3>Why we charge anything at all</h3>
+        <p>The research on adult learning is consistent: when people invest something in a learning experience — even modestly — they engage more deeply and walk away with better outcomes. That's what we want for you.</p>
+        <p>And money shouldn't be the reason you can't join. If $225 doesn't fit your situation, ask. We'll work with you.</p>
+      </div>
+
+      <div class="error-msg" id="error-msg">Something went wrong. Please try again, or email us directly at <a href="mailto:info@mtm.now">info@mtm.now</a>.</div>
+
+      <form name="discount-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="discount-form">
+        <input type="hidden" name="form-name" value="discount-application">
+        <div class="hp-field"><label>Don't fill this out: <input name="bot-field"></label></div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="name">Your name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="organization">Organization <span class="opt">(optional)</span></label>
+            <input type="text" id="organization" name="organization" autocomplete="organization">
+          </div>
+          <div class="field">
+            <label for="role">Your role <span class="opt">(optional)</span></label>
+            <input type="text" id="role" name="role" autocomplete="organization-title">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Is this for... <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="registration_type" value="individual" required>
+              <span><span class="label">Just me</span></span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="registration_type" value="multi" required>
+              <span>
+                <span class="label">Multiple people from my organization</span>
+                <span class="desc">Discounts apply per seat. You'll be the coordinator for the group.</span>
+              </span>
+            </label>
+          </div>
+          <div class="conditional" id="multi-conditional">
+            <label for="seat_count">How many people?</label>
+            <input type="number" id="seat_count" name="seat_count" min="2" max="50" placeholder="e.g., 5">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>What discount are you requesting? <span class="required">*</span></label>
+          <span class="helper">Pick what feels right for your situation. We may approve a different amount based on your answers below.</span>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="discount_amount" value="50" required>
+              <span>
+                <span class="label"><span class="price-tag">$50 off</span> &nbsp;·&nbsp; brings the price to $175</span>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="discount_amount" value="100" required>
+              <span>
+                <span class="label"><span class="price-tag">$100 off</span> &nbsp;·&nbsp; brings the price to $125</span>
+              </span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="discount_amount" value="200" required>
+              <span>
+                <span class="label"><span class="price-tag">$200 off</span> &nbsp;·&nbsp; brings the price to $25</span>
+                <span class="desc">For situations where money is a real barrier to joining.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="situation">In a sentence or two, what's the situation behind your request? <span class="required">*</span></label>
+          <textarea id="situation" name="situation" required maxlength="500"
+            placeholder="e.g., We're a 4-person nonprofit and our PD budget is tight this quarter."></textarea>
+        </div>
+
+        <div class="field">
+          <label for="goal">What do you most want to walk away with from this accelerator? <span class="required">*</span></label>
+          <textarea id="goal" name="goal" required maxlength="500"
+            placeholder="One sentence is enough — e.g., feeling confident using NotebookLM with our team."></textarea>
+        </div>
+
+        <div class="field">
+          <label>Roughly how many hours per week can you commit? <span class="required">*</span></label>
+          <span class="helper">We use this to pace the curriculum and check in if you're falling behind.</span>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="weekly_hours" value="under_2" required>
+              <span><span class="label">Less than 2 hours</span></span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="weekly_hours" value="2_to_4" required>
+              <span><span class="label">2–4 hours <span style="color:var(--text-secondary); font-weight:400; font-size:0.88rem;">(recommended for full engagement)</span></span></span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="weekly_hours" value="5_plus" required>
+              <span><span class="label">5+ hours</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Preferred payment method (if approved) <span class="required">*</span></label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="payment_method" value="card" required>
+              <span><span class="label">Credit / debit card</span></span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="payment_method" value="invoice" required>
+              <span>
+                <span class="label">Send me an invoice</span>
+                <span class="desc">Useful if your organization needs to process payment through accounts payable.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="checkbox-field">
+          <input type="checkbox" id="email_consent" name="email_consent" value="yes" required>
+          <label for="email_consent">
+            Yes, send me updates from MTM about future accelerators and resources.
+            <span class="small">Required to receive a discount. You can unsubscribe anytime.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn">Submit application →</button>
+
+      </form>
+
+    </div>
+
+    <div id="success-view" style="display:none;">
+      <div class="success">
+        <div class="success-icon">✓</div>
+        <h2>Application received</h2>
+        <p>We'll review this and get back to you by <strong id="response-by"></strong>.</p>
+        <p>If approved, you'll receive an email with a discount code and a link to register at the discounted rate.</p>
+        <a href="/" class="btn-primary">← Back to accelerator</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Meet the Moment · <a href="https://mtm.now">mtm.now</a> · Questions? <a href="mailto:info@mtm.now">info@mtm.now</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Conditional "How many people?" reveal
+  var multiConditional = document.getElementById('multi-conditional');
+  var seatCountInput = document.getElementById('seat_count');
+  document.querySelectorAll('input[name="registration_type"]').forEach(function (el) {
+    el.addEventListener('change', function () {
+      if (el.value === 'multi' && el.checked) {
+        multiConditional.classList.add('show');
+        seatCountInput.required = true;
+      } else if (el.checked) {
+        multiConditional.classList.remove('show');
+        seatCountInput.required = false;
+        seatCountInput.value = '';
+      }
+    });
+  });
+
+  // Compute "tomorrow EOD ET" for response-by display
+  function computeResponseBy() {
+    var now = new Date();
+    var tomorrow = new Date(now);
+    tomorrow.setDate(now.getDate() + 1);
+    var dow = tomorrow.getDay(); // 0=Sun, 6=Sat
+    if (dow === 6) tomorrow.setDate(tomorrow.getDate() + 2);   // Sat → Mon
+    else if (dow === 0) tomorrow.setDate(tomorrow.getDate() + 1); // Sun → Mon
+    var opts = { weekday: 'long', month: 'long', day: 'numeric' };
+    return tomorrow.toLocaleDateString('en-US', opts) + ', end of day ET';
+  }
+
+  // Form submission
+  var form = document.getElementById('discount-form');
+  var submitBtn = document.getElementById('submit-btn');
+  var errorMsg = document.getElementById('error-msg');
+  var formView = document.getElementById('form-view');
+  var successView = document.getElementById('success-view');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorMsg.classList.remove('show');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting…';
+
+    var formData = new FormData(form);
+    var body = new URLSearchParams(formData).toString();
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: body
+    }).then(function (response) {
+      if (response.ok) {
+        document.getElementById('response-by').textContent = computeResponseBy();
+        formView.style.display = 'none';
+        successView.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        throw new Error('Submission failed: ' + response.status);
+      }
+    }).catch(function (err) {
+      console.error(err);
+      errorMsg.classList.add('show');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit application →';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
